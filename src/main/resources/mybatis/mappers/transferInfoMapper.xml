@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mybatis TransactionDao mapper configuration -->
+<mapper namespace="oracle.test.universalpool.mybatis.samples.mappers.TransactionDao">
+
+	<!-- mapping between table columns and object fields -->
+	<resultMap id="transactionResult"
+		type="oracle.test.universalpool.mybatis.samples.model.TransferInfo">
+		<result property="id" column="id" />
+		<result property="TRANSFER_ID" column="TRANSFER_ID" />
+		<result property="DOCUMENT_ID" column="DOCUMENT_ID" />
+		<result property="DOCUMENT_CATEGORY" column="DOCUMENT_CATEGORY" />
+		<result property="PARENT_TRANSFER" column="PARENT_TRANSFER" />
+		<result property="TRANSFER_DATE" column="TRANSFER_DATE" />
+		<result property="TRANSFER_DATE_HIJRI" column="TRANSFER_DATE_HIJRI" />
+		<result property="SEND_TARGET" column="SEND_TARGET" />
+		<result property="FROM_DEPARTMENT" column="FROM_DEPARTMENT" />
+		<result property="TO_DEPARTMENT" column="TO_DEPARTMENT" />
+		<result property="TO_DEPARTMENT_OFFICE_ID" column="TO_DEPARTMENT_OFFICE_ID" />
+		<result property="FROM_CONTACT" column="FROM_CONTACT" />
+		<result property="TO_CONTACT" column="TO_CONTACT" />
+		<result property="FROM_ORGANIZATION" column="FROM_ORGANIZATION" />
+		<result property="TO_ORGANIZATION" column="TO_ORGANIZATION" />
+		<result property="FROM_CITIZEN" column="FROM_CITIZEN" />
+		<result property="TO_CITIZEN" column="TO_CITIZEN" />
+		<result property="SIDE_TYPE" column="SIDE_TYPE" />
+		<result property="DESCRIPTION" column="DESCRIPTION" />
+		<result property="ACTION_ID" column="ACTION_ID" />
+		<result property="CLOSED" column="CLOSED" />
+		<result property="AUTO_CLOSED" column="AUTO_CLOSED" />
+		<result property="CLOSE_NOTES" column="CLOSE_NOTES" />
+		<result property="OUTGOING_PROJECT_PATH" column="OUTGOING_PROJECT_PATH" />
+		<result property="IS_REJECTED" column="IS_REJECTED" />
+		<result property="IS_ON_HOLD" column="IS_ON_HOLD" />
+		<result property="IS_RECEIVED" column="IS_RECEIVED" />
+		<result property="IS_CANCELED" column="IS_CANCELED" />
+		<result property="REJECT_REASON" column="REJECT_REASON" />
+		<result property="CLOUSER_REASON" column="CLOUSER_REASON" />
+		<result property="EXECUTOR_ID" column="EXECUTOR_ID" />
+		<result property="EXECUTOR_DELEGATE_FOR" column="EXECUTOR_DELEGATE_FOR" />
+		<result property="CREATED_BY_DEPARTMENT" column="CREATED_BY_DEPARTMENT" />
+		<result property="CREATED_BY" column="CREATED_BY" />
+		<result property="DELEGATE_FOR" column="DELEGATE_FOR" />
+		<result property="IS_MIGRATED" column="IS_MIGRATED" />
+		<result property="IS_RETURNED" column="IS_RETURNED" />
+		<result property="IS_SYSTEMATIC" column="IS_SYSTEMATIC" />
+		<result property="IS_TRANSFERED" column="IS_TRANSFERED" />
+		<result property="RECEIVED_OR_TRANSFERRED" column="RECEIVED_OR_TRANSFERRED" />
+	</resultMap>
+
+	<!-- in the examples with TransactionDao try useCache=false in this case 
+		cache won't be used and each time query the db -->
+	<select id="findAll" resultMap="transactionResult"
+		fetchSize="256" flushCache="false" useCache="true" timeout="60000"
+		statementType="PREPARED" resultSetType="FORWARD_ONLY">
+		select * from TRANSFERS
+	</select>
+
+	<!-- flushCache to db configuration -->
+	<insert id="insertTransaction"
+		parameterType="oracle.test.universalpool.mybatis.samples.model.Transaction"
+		flushCache="true">
+		INSERT INTO TRANSFERS
+		(id, name)
+		VALUES (#{id}, #{name})
+	</insert>
+
+	<!-- cache 2 level configuration for TransactionDao. Can be commented out 
+		and in this case it won't be used -->
+	<cache eviction="FIFO" flushInterval="60000" size="512"
+		readOnly="true" type="oracle.test.universalpool.mybatis.samples.cache.CustomDefaultCache">
+		<property name="stringProperty" value="foo" />
+		<property name="integerProperty" value="199" />
+	</cache>
+
+</mapper>
