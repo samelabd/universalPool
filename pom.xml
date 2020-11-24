@@ -119,6 +119,14 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>2.0.6</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.mybatis.dynamic-sql/mybatis-dynamic-sql -->
+		<dependency>
+			<groupId>org.mybatis.dynamic-sql</groupId>
+			<artifactId>mybatis-dynamic-sql</artifactId>
+			<version>1.1.4</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp <dependency> 
 			<groupId>org.apache.commons</groupId> <artifactId>com.springsource.org.apache.commons.dbcp</artifactId> 
 			<version>2.8.0</version> </dependency> -->
@@ -134,6 +142,16 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.11</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.oracle.ojdbc/orai18n -->
+		<dependency>
+			<groupId>com.oracle.ojdbc</groupId>
+			<artifactId>orai18n</artifactId>
+			<version>19.3.0.0</version>
+		</dependency>
+
+
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -160,6 +178,10 @@
 		<!-- Junit -->
 
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
