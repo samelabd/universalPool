@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mybatis TransactionDao mapper configuration -->
+<mapper
+	namespace="com.dbcall.procedure.MyModel">
+
+	<!-- mapping between table columns and object fields -->
+	<resultMap id="myModelResult"
+		type="com.dbcall.procedure.MyModel">
+		
+		<result property="myModelId" column="MYMODEL_ID" />
+		<result property="requestNo" column="REQUESTNO" />
+		<result property="issuedByUser" column="ISSUEDBYUSER" />
+		<result property="dirCode" column="DIRCODE" />
+		<result property="confirmedByUser" column="CONFIRMEDBYUSER" />
+		<result property="requestStatus" column="REQUESTSTATUS" />
+		<result property="requestStaDesc" column="REQUESTSTADESC" />
+
+	</resultMap>
+
+	<!-- in the examples with TransactionDao try useCache=false in this case 
+		cache won't be used and each time query the db -->
+	<!-- <select id="findAll" resultMap="transactionResult" fetchSize="256" 
+		flushCache="false" useCache="true" timeout="60000" statementType="PREPARED" 
+		resultSetType="FORWARD_ONLY"> select * from TRANSFERS </select> -->
+	
+	<select id="findAllByCateg" resultMap="transfersResult"
+		fetchSize="256" flushCache="false" useCache="true" timeout="60000"
+		statementType="PREPARED" resultSetType="FORWARD_ONLY">
+		select * from transfers where
+		Document_category = 'Incoming'
+	</select>
+	
+	
+	
+	
+	
+	<select id="findAllByReqStatus" resultMap="MyModelResult"
+		fetchSize="256" flushCache="false" useCache="true" timeout="60000"
+		statementType="PREPARED" resultSetType="FORWARD_ONLY">
+		select * from MyModel where
+		REQUESTSTATUS = #{requestStatus}
+	</select>
+
+	<!-- flushCache to db configuration -->
+	<insert id="insertTransaction"
+		parameterType="com.dbcall.procedure.MyModel"
+		flushCache="true">
+		INSERT INTO MyModel
+		(REQUESTNO, ISSUEDBYUSER,DIRCODE,CONFIRMEDBYUSER,REQUESTSTATUS,REQUESTSTADESC)
+		VALUES (#{requestNo}, #{issuedByUser}, #{dirCode}, #{confirmedByUser}, #{requestStatus}, #{requestStaDesc})
+	</insert>
+
+	<!-- cache 2 level configuration for TransactionDao. Can be commented out 
+		and in this case it won't be used -->
+	<cache eviction="FIFO" flushInterval="60000" size="512"
+		readOnly="true"
+		type="oracle.test.universalpool.mybatis.samples.cache.CustomDefaultCache">
+		<property name="stringProperty" value="foo" />
+		<property name="integerProperty" value="199" />
+	</cache>
+
+</mapper>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><params>
+	
+	<DBName>dPortal</DBName>
+	<Driver>oracle.jdbc.driver.OracleDriver</Driver>
+
+
+	<URL>jdbc:oracle:thin:@(DESCRIPTION =
+		(ADDRESS = (PROTOCOL = TCP)(HOST = rmodavm.itamana.net)(PORT = 1545))
+		(CONNECT_DATA =
+		(SERVER = DEDICATED)
+		(SERVICE_NAME = stage)
+		)
+		)
+	</URL>
+
+	<UserCode>ES_RIM</UserCode>
+	<PassWord>esdmsearim</PassWord>
+
+	<URL>jdbc:oracle:thin:@(DESCRIPTION =
+		(LOAD_BALANCE=on)
+		(ADDRESS = (PROTOCOL = TCP)(HOST = rmodavm.itamana.net)(PORT = 1545))
+		(ADDRESS = (PROTOCOL = TCP)(HOST = rmodavm.itamana.net)(PORT = 1545))
+		(CONNECT_DATA =
+		(SERVER = DEDICATED)
+		(SERVICE_NAME = stage)
+		)
+		)
+	</URL>
+
+
+	<MYKEY>
+		<INSIDEMYKEY>
+			<DEEPKEY>updateFrom</DEEPKEY>
+			<DEEPKEY>updateFrom</DEEPKEY>
+			<Schema>87687876</Schema>
+		</INSIDEMYKEY>
+	</MYKEY>
+
+
+
+	<Schema>87687876</Schema>
+	<UpperCase>yes</UpperCase>
+	<DefaultLang>EN</DefaultLang>
+	<SecurityDB>dPortal</SecurityDB>
+	<DateFormat>
+		<internal>yyyyMMdd</internal>
+		<visible>yyyyMMdd</visible>
+		<sql>dd/MM/yyyy</sql>
+		<time>HH:mm:ss</time>
+	</DateFormat>
+	<FieldNames>
+		<PASSWORD>PASSWORD</PASSWORD>
+		<ROLE>ROLE</ROLE>
+		<ADMIN>ADMIN</ADMIN>
+		<ACTION>ACTION</ACTION>
+		<FIELDS>FIELDS</FIELDS>
+		<KEYS>KEYS</KEYS>
+	</FieldNames>
+
+
+
+<xixi>87687876</xixi>
+<mmm>1111111</mmm>
+</params>

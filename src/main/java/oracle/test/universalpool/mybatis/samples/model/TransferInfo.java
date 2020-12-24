@@ -680,259 +680,157 @@ public class TransferInfo implements Serializable {
 		this.signStatus = signStatus;
 	}
 
-
-
-	public Map<String, Object> toMap() throws Exception {
-		Hashtable<String, Object> transferMap = new Hashtable<String, Object>();
-
-		String contactId = "";// CurrentESSession.getAttribute("contact_id") == null ? "" : CurrentESSession.getAttribute("contact_id").toString();
-		String delegateId = "";// CurrentESSession.getAttribute("delegate_for") == null ? "" : CurrentESSession.getAttribute("delegate_for").toString();
-		String departmentId = "";// CurrentESSession.getAttribute("department_id") == null ? "" : CurrentESSession.getAttribute("department_id").toString();
-
-		if (StringUtils.isEmpty(contactId) || StringUtils.isEmpty(departmentId)) {
-			throw new Exception("Contact Or Department is null");
-		}
-
-		if (!StringUtils.isEmpty(transferId)) {
-			transferMap.put("#ukvalue#", transferId);
-			transferMap.put("TRANSFER_ID", transferId);
-		} else {
-			// Only in Add Mode not Edit Mode
-			if (StringUtils.isEmpty(this.fromOrganization) && StringUtils.isEmpty(this.fromCitizen) )
-				transferMap.put("FROM_DEPARTMENT", departmentId);
-
-			transferMap.put("FROM_CONTACT", contactId);
-
-			transferMap.put("CREATED_BY", contactId);
-			transferMap.put("CREATED_BY_DEPARTMENT", departmentId);
-			transferMap.put("DELEGATE_FOR", delegateId);
-		}
-		if (!StringUtils.isEmpty(documentId)) {
-			transferMap.put("DOCUMENT_ID", documentId);
-		}
-		if (!StringUtils.isEmpty(signStatus)) {
-			transferMap.put("SIGN_STATUS", signStatus);
-		}
-		
-		if (!StringUtils.isEmpty(transferDateHijri)) {
-			transferMap.put("TRANSFER_DATE_HIJRI", transferDateHijri);
-		}
-		//
-		if (!StringUtils.isEmpty(toContact)) {
-			transferMap.put("TO_CONTACT", toContact);
-		}
-		
-		if (!StringUtils.isEmpty(orginalTransferId)) {
-			transferMap.put("ORIGINAL_TRANSFER_ID", orginalTransferId);
-		}
-
-		
-		if (!StringUtils.isEmpty(settledBy)) {
-			transferMap.put("SETTLED_BY", settledBy);
-		}
-		
-		if (!StringUtils.isEmpty(CLOSED_BY)) {
-			transferMap.put("CLOSED_BY", CLOSED_BY);
-		}
-		
-		if (!StringUtils.isEmpty(fromOrganization)) {
-			transferMap.put("FROM_ORGANIZATION", fromOrganization);
-		}
-	
-		if (!StringUtils.isEmpty(toCItizen)) {
-			transferMap.put("TO_CITIZEN", toCItizen);
-		}
-		if (!StringUtils.isEmpty(fromCitizen)) {
-			transferMap.put("FROM_CITIZEN", fromCitizen);
-		}
-		if (!StringUtils.isEmpty(toOrganization)) {
-			transferMap.put("TO_ORGANIZATION", toOrganization);
-		}
-
-		if (!StringUtils.isEmpty(toDepartment)) {
-			transferMap.put("TO_DEPARTMENT", toDepartment);
-		}
-
-		if (!StringUtils.isEmpty(description)) {
-			transferMap.put("DESCRIPTION", description);
-		}
-		if(IS_CIRCULAR){
-			transferMap.put("IS_CIRCULAR", 1);
-		}
-		
-		
-		if (TransSecurityLevel != -1 ) {
-			transferMap.put("TRANSFER_SEC_LEVEL", TransSecurityLevel);
-		}
-		if (!StringUtils.isEmpty(ATTACHMENT_NO)) {
-			transferMap.put("ATTACHMENT_NO", ATTACHMENT_NO);
-		}
-		if (!StringUtils.isEmpty(closed)) {
-			transferMap.put("CLOSED", closed);
-		}
-		if (!StringUtils.isEmpty(autoClosed)) {
-			transferMap.put("AUTO_CLOSED", autoClosed);
-		}
-		if (!StringUtils.isEmpty(actionId)) {
-			transferMap.put("ACTION_ID", actionId);
-		}
-		if (!StringUtils.isEmpty(parentTransfer)) {
-			transferMap.put("PARENT_TRANSFER", parentTransfer);
-		}
-		if (!StringUtils.isEmpty(sendTarget)) {
-			transferMap.put("SEND_TARGET", sendTarget);
-		}
-
-		if (!StringUtils.isEmpty(closeNotes)) {
-			transferMap.put("CLOSE_NOTES", closeNotes);
-		}
-		if (!StringUtils.isEmpty(transferDueDateH)) {
-			transferMap.put("TRANSFER_DUE_DATE_HIJRI", transferDueDateH);
-		}
-		//MHM
-		if (transferImportance != -1) {
-			transferMap.put("TRANSFER_IMPORTANCE", transferImportance);
-		}
-		
-		if (workDay != -1) {
-			transferMap.put("WORK_DAY", workDay);
-		}
-		if (!StringUtils.isEmpty(transferDueDateH)
-				&& transferDueDateH != null) {
-			transferMap.put("TRANSFER_DUE_DATE", transferDeuDate);
-			transferMap.put("TRANSFER_DUE_DATE_HIJRI",
-					transferDueDateH);
-		}
-		if (locked == "1") {
-			transferMap.put("LOCKED", "1");
-		}
-		
-		if (locked == "0") {
-			transferMap.put("LOCKED", "0");
-		}
-		if (locked == null) {
-			transferMap.put("LOCKED", "0");
-		}
-
-		
-		//~
-		if (!StringUtils.isEmpty(documentCategory)) {
-			transferMap.put("DOCUMENT_CATEGORY", documentCategory);
-
-			if (documentCategory.equals(INTERNAL)) {
-				transferMap.put("SIDE_TYPE", "INTERNAL_ORGANIZATION");
-			}
-			if (documentCategory.equals(OUTGOING)) {
-				if (!StringUtils.isEmpty(toOrganization)) {
-					if(StringUtils.isEmpty(sideType)) {
-						sideType="EXTERNAL_ORGANIZATION";
-					}
-					
-				   if(sideType.equals("EXTERNAL_ORGANIZATION")) {
-						transferMap.put("SIDE_TYPE", "EXTERNAL_ORGANIZATION");
-					}else {
-						transferMap.put("SIDE_TYPE","RELATED_ORGANIZATION");
-					}
-				
-			}
-				else if (!StringUtils.isEmpty(toCItizen)) transferMap.put("SIDE_TYPE", "CITIZEN");
-			}
-			if (documentCategory.equals(INCOMING)) {
-				if (!StringUtils.isEmpty(fromOrganization)) 
-					if(sideType.equals("EXTERNAL_ORGANIZATION")) {
-						transferMap.put("SIDE_TYPE", "EXTERNAL_ORGANIZATION");
-					}else {
-						transferMap.put("SIDE_TYPE","RELATED_ORGANIZATION");
-					}
-					//transferMap.put("SIDE_TYPE", "EXTERNAL_ORGANIZATION");
-				else if (!StringUtils.isEmpty(fromCitizen)) transferMap.put("SIDE_TYPE", "CITIZEN");
-			}
-
-		}
-
-		if (!StringUtils.isEmpty(toDepartmentOfficeId)) {
-			transferMap.put("TO_DEPARTMENT_OFFICE_ID", toDepartmentOfficeId);
-		}
-
-		if (!StringUtils.isEmpty(outgoingProjectPath)) {
-			transferMap.put("OUTGOING_PROJECT_PATH", outgoingProjectPath);
-		}
-		if (!StringUtils.isEmpty(executorId)) {
-			transferMap.put("EXECUTOR_ID", executorId);
-		}
-		if (!StringUtils.isEmpty(executorDelegateFor)) {
-			transferMap.put("EXECUTOR_DELEGATE_FOR", executorDelegateFor);
-		}
-		if (isReceived) {
-			transferMap.put("IS_RECEIVED", "1");
-		}
-		if (!isReceived) {
-			transferMap.put("IS_RECEIVED", "0");
-		}
-		if (isRejected) {
-			transferMap.put("IS_REJECTED", "1");
-		}
-		if (isOnHold) {
-			transferMap.put("IS_ON_HOLD", "1");
-		}
-		if (transfer) {
-			transferMap.put("TRANSFER", "1");
-		}
-//		else{
-//			transferMap.put("TRANSFER", "0");
-//
-//		}
-		
-		if (transferNo != -1) {
-			transferMap.put("TRANSFER_NUMBER", transferNo);
-		}
-		
-		if (isTransfered) {
-			transferMap.put("IS_TRANSFERED", "1");
-		}
-		if (isReturned) {
-			transferMap.put("IS_RETURNED", "1");
-		}
-		if(isCanceled){
-			transferMap.put("IS_CANCELED", "1");
-		}
-		if(IsFollowUp){
-			transferMap.put("DOC_FOLLOW_UP", "1");
-		}
-		
-		if(isSystematic){
-			transferMap.put("IS_SYSTEMATIC", "1");
-		}
-		//MHM
-		if(!StringUtils.isEmpty(receivedOrTransferred)){
-			transferMap.put("RECEIVED_OR_TRANSFERRED", receivedOrTransferred);
-		}
-		if(!StringUtils.isEmpty(transferFollowUpStatus)){
-			transferMap.put("TRANSFER_FOLLOW_UP_STATUS", transferFollowUpStatus);
-		}
-		if(!StringUtils.isEmpty(toDepartmentFollowUp)){
-			transferMap.put("TO_DEPARTMENT_FOLLOW_UP", toDepartmentFollowUp);
-		}
-		if(!StringUtils.isEmpty(signature)){
-			transferMap.put("SIGNATURE", signature);
-		}
-		if(!StringUtils.isEmpty(secretaryExplanationDate)){
-			transferMap.put("SECRETARY_EXPLANATION_DATE", secretaryExplanationDate);
-		}
-		if(!StringUtils.isEmpty(createdByOriginalDep)){
-			transferMap.put("CREATED_BY_ORIGINAL_DEP", createdByOriginalDep);
-		}
-		if(CLOSE_DATE != null){
-			transferMap.put("CLOSE_DATE",CLOSE_DATE);
-		}
-		if(SENT_DATE != null){
-			transferMap.put("SENT_DATE",SENT_DATE);
-		}
-
-		//ENd
-		return transferMap;
-	}
-
+	/*
+	 * 
+	 * public Map<String, Object> toMap() throws Exception { Hashtable<String,
+	 * Object> transferMap = new Hashtable<String, Object>();
+	 * 
+	 * String contactId = "";// CurrentESSession.getAttribute("contact_id") == null
+	 * ? "" : CurrentESSession.getAttribute("contact_id").toString(); String
+	 * delegateId = "";// CurrentESSession.getAttribute("delegate_for") == null ? ""
+	 * : CurrentESSession.getAttribute("delegate_for").toString(); String
+	 * departmentId = "";// CurrentESSession.getAttribute("department_id") == null ?
+	 * "" : CurrentESSession.getAttribute("department_id").toString();
+	 * 
+	 * if (StringUtils.isEmpty(contactId) || StringUtils.isEmpty(departmentId)) {
+	 * throw new Exception("Contact Or Department is null"); }
+	 * 
+	 * if (!StringUtils.isEmpty(transferId)) { transferMap.put("#ukvalue#",
+	 * transferId); transferMap.put("TRANSFER_ID", transferId); } else { // Only in
+	 * Add Mode not Edit Mode if (StringUtils.isEmpty(this.fromOrganization) &&
+	 * StringUtils.isEmpty(this.fromCitizen) ) transferMap.put("FROM_DEPARTMENT",
+	 * departmentId);
+	 * 
+	 * transferMap.put("FROM_CONTACT", contactId);
+	 * 
+	 * transferMap.put("CREATED_BY", contactId);
+	 * transferMap.put("CREATED_BY_DEPARTMENT", departmentId);
+	 * transferMap.put("DELEGATE_FOR", delegateId); } if
+	 * (!StringUtils.isEmpty(documentId)) { transferMap.put("DOCUMENT_ID",
+	 * documentId); } if (!StringUtils.isEmpty(signStatus)) {
+	 * transferMap.put("SIGN_STATUS", signStatus); }
+	 * 
+	 * if (!StringUtils.isEmpty(transferDateHijri)) {
+	 * transferMap.put("TRANSFER_DATE_HIJRI", transferDateHijri); } // if
+	 * (!StringUtils.isEmpty(toContact)) { transferMap.put("TO_CONTACT", toContact);
+	 * }
+	 * 
+	 * if (!StringUtils.isEmpty(orginalTransferId)) {
+	 * transferMap.put("ORIGINAL_TRANSFER_ID", orginalTransferId); }
+	 * 
+	 * 
+	 * if (!StringUtils.isEmpty(settledBy)) { transferMap.put("SETTLED_BY",
+	 * settledBy); }
+	 * 
+	 * if (!StringUtils.isEmpty(CLOSED_BY)) { transferMap.put("CLOSED_BY",
+	 * CLOSED_BY); }
+	 * 
+	 * if (!StringUtils.isEmpty(fromOrganization)) {
+	 * transferMap.put("FROM_ORGANIZATION", fromOrganization); }
+	 * 
+	 * if (!StringUtils.isEmpty(toCItizen)) { transferMap.put("TO_CITIZEN",
+	 * toCItizen); } if (!StringUtils.isEmpty(fromCitizen)) {
+	 * transferMap.put("FROM_CITIZEN", fromCitizen); } if
+	 * (!StringUtils.isEmpty(toOrganization)) { transferMap.put("TO_ORGANIZATION",
+	 * toOrganization); }
+	 * 
+	 * if (!StringUtils.isEmpty(toDepartment)) { transferMap.put("TO_DEPARTMENT",
+	 * toDepartment); }
+	 * 
+	 * if (!StringUtils.isEmpty(description)) { transferMap.put("DESCRIPTION",
+	 * description); } if(IS_CIRCULAR){ transferMap.put("IS_CIRCULAR", 1); }
+	 * 
+	 * 
+	 * if (TransSecurityLevel != -1 ) { transferMap.put("TRANSFER_SEC_LEVEL",
+	 * TransSecurityLevel); } if (!StringUtils.isEmpty(ATTACHMENT_NO)) {
+	 * transferMap.put("ATTACHMENT_NO", ATTACHMENT_NO); } if
+	 * (!StringUtils.isEmpty(closed)) { transferMap.put("CLOSED", closed); } if
+	 * (!StringUtils.isEmpty(autoClosed)) { transferMap.put("AUTO_CLOSED",
+	 * autoClosed); } if (!StringUtils.isEmpty(actionId)) {
+	 * transferMap.put("ACTION_ID", actionId); } if
+	 * (!StringUtils.isEmpty(parentTransfer)) { transferMap.put("PARENT_TRANSFER",
+	 * parentTransfer); } if (!StringUtils.isEmpty(sendTarget)) {
+	 * transferMap.put("SEND_TARGET", sendTarget); }
+	 * 
+	 * if (!StringUtils.isEmpty(closeNotes)) { transferMap.put("CLOSE_NOTES",
+	 * closeNotes); } if (!StringUtils.isEmpty(transferDueDateH)) {
+	 * transferMap.put("TRANSFER_DUE_DATE_HIJRI", transferDueDateH); } //MHM if
+	 * (transferImportance != -1) { transferMap.put("TRANSFER_IMPORTANCE",
+	 * transferImportance); }
+	 * 
+	 * if (workDay != -1) { transferMap.put("WORK_DAY", workDay); } if
+	 * (!StringUtils.isEmpty(transferDueDateH) && transferDueDateH != null) {
+	 * transferMap.put("TRANSFER_DUE_DATE", transferDeuDate);
+	 * transferMap.put("TRANSFER_DUE_DATE_HIJRI", transferDueDateH); } if (locked ==
+	 * "1") { transferMap.put("LOCKED", "1"); }
+	 * 
+	 * if (locked == "0") { transferMap.put("LOCKED", "0"); } if (locked == null) {
+	 * transferMap.put("LOCKED", "0"); }
+	 * 
+	 * 
+	 * //~ if (!StringUtils.isEmpty(documentCategory)) {
+	 * transferMap.put("DOCUMENT_CATEGORY", documentCategory);
+	 * 
+	 * if (documentCategory.equals(INTERNAL)) { transferMap.put("SIDE_TYPE",
+	 * "INTERNAL_ORGANIZATION"); } if (documentCategory.equals(OUTGOING)) { if
+	 * (!StringUtils.isEmpty(toOrganization)) { if(StringUtils.isEmpty(sideType)) {
+	 * sideType="EXTERNAL_ORGANIZATION"; }
+	 * 
+	 * if(sideType.equals("EXTERNAL_ORGANIZATION")) { transferMap.put("SIDE_TYPE",
+	 * "EXTERNAL_ORGANIZATION"); }else {
+	 * transferMap.put("SIDE_TYPE","RELATED_ORGANIZATION"); }
+	 * 
+	 * } else if (!StringUtils.isEmpty(toCItizen)) transferMap.put("SIDE_TYPE",
+	 * "CITIZEN"); } if (documentCategory.equals(INCOMING)) { if
+	 * (!StringUtils.isEmpty(fromOrganization))
+	 * if(sideType.equals("EXTERNAL_ORGANIZATION")) { transferMap.put("SIDE_TYPE",
+	 * "EXTERNAL_ORGANIZATION"); }else {
+	 * transferMap.put("SIDE_TYPE","RELATED_ORGANIZATION"); }
+	 * //transferMap.put("SIDE_TYPE", "EXTERNAL_ORGANIZATION"); else if
+	 * (!StringUtils.isEmpty(fromCitizen)) transferMap.put("SIDE_TYPE", "CITIZEN");
+	 * }
+	 * 
+	 * }
+	 * 
+	 * if (!StringUtils.isEmpty(toDepartmentOfficeId)) {
+	 * transferMap.put("TO_DEPARTMENT_OFFICE_ID", toDepartmentOfficeId); }
+	 * 
+	 * if (!StringUtils.isEmpty(outgoingProjectPath)) {
+	 * transferMap.put("OUTGOING_PROJECT_PATH", outgoingProjectPath); } if
+	 * (!StringUtils.isEmpty(executorId)) { transferMap.put("EXECUTOR_ID",
+	 * executorId); } if (!StringUtils.isEmpty(executorDelegateFor)) {
+	 * transferMap.put("EXECUTOR_DELEGATE_FOR", executorDelegateFor); } if
+	 * (isReceived) { transferMap.put("IS_RECEIVED", "1"); } if (!isReceived) {
+	 * transferMap.put("IS_RECEIVED", "0"); } if (isRejected) {
+	 * transferMap.put("IS_REJECTED", "1"); } if (isOnHold) {
+	 * transferMap.put("IS_ON_HOLD", "1"); } if (transfer) {
+	 * transferMap.put("TRANSFER", "1"); } // else{ // transferMap.put("TRANSFER",
+	 * "0"); // // }
+	 * 
+	 * if (transferNo != -1) { transferMap.put("TRANSFER_NUMBER", transferNo); }
+	 * 
+	 * if (isTransfered) { transferMap.put("IS_TRANSFERED", "1"); } if (isReturned)
+	 * { transferMap.put("IS_RETURNED", "1"); } if(isCanceled){
+	 * transferMap.put("IS_CANCELED", "1"); } if(IsFollowUp){
+	 * transferMap.put("DOC_FOLLOW_UP", "1"); }
+	 * 
+	 * if(isSystematic){ transferMap.put("IS_SYSTEMATIC", "1"); } //MHM
+	 * if(!StringUtils.isEmpty(receivedOrTransferred)){
+	 * transferMap.put("RECEIVED_OR_TRANSFERRED", receivedOrTransferred); }
+	 * if(!StringUtils.isEmpty(transferFollowUpStatus)){
+	 * transferMap.put("TRANSFER_FOLLOW_UP_STATUS", transferFollowUpStatus); }
+	 * if(!StringUtils.isEmpty(toDepartmentFollowUp)){
+	 * transferMap.put("TO_DEPARTMENT_FOLLOW_UP", toDepartmentFollowUp); }
+	 * if(!StringUtils.isEmpty(signature)){ transferMap.put("SIGNATURE", signature);
+	 * } if(!StringUtils.isEmpty(secretaryExplanationDate)){
+	 * transferMap.put("SECRETARY_EXPLANATION_DATE", secretaryExplanationDate); }
+	 * if(!StringUtils.isEmpty(createdByOriginalDep)){
+	 * transferMap.put("CREATED_BY_ORIGINAL_DEP", createdByOriginalDep); }
+	 * if(CLOSE_DATE != null){ transferMap.put("CLOSE_DATE",CLOSE_DATE); }
+	 * if(SENT_DATE != null){ transferMap.put("SENT_DATE",SENT_DATE); }
+	 * 
+	 * //ENd return transferMap; }
+	 */
 	public String getCreatedBy() {
 		return createdBy;
 	}

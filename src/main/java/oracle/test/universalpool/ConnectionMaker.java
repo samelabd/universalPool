@@ -57,7 +57,7 @@ public class ConnectionMaker {
 			inputStream = org.apache.ibatis.io.Resources.getResourceAsStream(XML_CONFIG_BATIS);
 			SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
 			SqlSessionFactory sqlSessionFactory = builder.build(inputStream, "development_oracle");
-			SelectStatementProvider selectStatement = sel;
+//			SelectStatementProvider selectStatement = sel;
 //			sqlSessionFactory.openSession().select(statement, handler);
 //			sqlSessionFactory.openSession().insert(statement);
 //			sqlSessionFactory.openSession().update(statement);

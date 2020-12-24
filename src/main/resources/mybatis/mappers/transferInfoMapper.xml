@@ -2,22 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- mybatis TransactionDao mapper configuration -->
-<mapper namespace="oracle.test.universalpool.mybatis.samples.mappers.TransferInfoDao">
+<mapper
+	namespace="oracle.test.universalpool.mybatis.samples.mappers.TransferInfoDao">
 
 	<!-- mapping between table columns and object fields -->
 	<resultMap id="transfersResult"
 		type="oracle.test.universalpool.mybatis.samples.model.TransferInfo">
-	<result property="id" column="id" />
+		<result property="id" column="id" />
 		<result property="transferId" column="TRANSFER_ID" />
 		<result property="documentId" column="DOCUMENT_ID" />
 		<result property="documentCategory" column="DOCUMENT_CATEGORY" />
 		<result property="parentTransfer" column="PARENT_TRANSFER" />
 		<result property="transferDate" column="TRANSFER_DATE" />
-		<result property="transferDateHijri" column="TRANSFER_DATE_HIJRI" />
+		<result property="transferDateHijri"
+			column="TRANSFER_DATE_HIJRI" />
 		<result property="sendTarget" column="SEND_TARGET" />
 		<result property="fromDepartment" column="FROM_DEPARTMENT" />
 		<result property="toDepartment" column="TO_DEPARTMENT" />
-		<result property="toDepartmentOfficeId" column="TO_DEPARTMENT_OFFICEID" />
+		<result property="toDepartmentOfficeId"
+			column="TO_DEPARTMENT_OFFICEID" />
 		<result property="fromContact" column="FROM_CONTACT" />
 		<result property="toContact" column="TO_CONTACT" />
 		<result property="fromOrganization" column="FROMORGANIZATION" />
@@ -30,7 +33,8 @@
 		<result property="closed" column="closed" />
 		<result property="autoClosed" column="AUTO_CLOSED" />
 		<result property="closeNotes" column="CLOSE_NOTES" />
-		<result property="outgoingProjectPath" column="OUTGOING_PROJECT_PATH" />
+		<result property="outgoingProjectPath"
+			column="OUTGOING_PROJECT_PATH" />
 		<result property="isRejected" column="IS_REJECTED" />
 		<result property="isOnHold" column="IS_ON_HOLD" />
 		<result property="isReceived" column="IS_RECEIVED" />
@@ -38,122 +42,130 @@
 		<result property="rejectReason" column="REJECT_REASON" />
 		<!-- <result property="CLOUSER_REASON" column="CLOUSER_REASON" /> -->
 		<result property="executorId" column="EXECUTOR_ID" />
-		<result property="executorDelegateFor" column="EXECUTOR_DELEGATE_FOR" />
-		<result property="createdByDepartment" column="CREATED_BY_DEPARTMENT" />
+		<result property="executorDelegateFor"
+			column="EXECUTOR_DELEGATE_FOR" />
+		<result property="createdByDepartment"
+			column="CREATED_BY_DEPARTMENT" />
 		<result property="createdBy" column="CREATED_BY" />
 		<result property="delegateFor" column="DELEGATE_FOR" />
 		<result property="IS_MIGRATED" column="IS_MIGRATED" />
 		<result property="isReturned" column="IS_RETURNED" />
 		<result property="isSystematic" column="IS_SYSTEMATIC" />
 		<result property="isTransfered" column="IS_TRANSFERED" />
-		<result property="receivedOrTransferred" column="RECEIVED_OR_TRANSFERRED" />
-		<result property="transferDueDateH" column="TRANSFER_DUE_DATE_HIJRI" />
+		<result property="receivedOrTransferred"
+			column="RECEIVED_OR_TRANSFERRED" />
+		<result property="transferDueDateH"
+			column="TRANSFER_DUE_DATE_HIJRI" />
 		<result property="transferDeuDate" column="TRANSFER_DUE_DATE" />
-		<result property="transferImportance" column="TRANSFER_IMPORTANCE" />
+		<result property="transferImportance"
+			column="TRANSFER_IMPORTANCE" />
 		<result property="workDay" column="WORK_DAY" />
-		<result property="toDepartmentFollowUp" column="TO_DEPARTMENT_FOLLOW_UP" />
-		<result property="transferFollowUpStatus" column="TRANSFER_FOLLOW_UP_STATUS" />
+		<result property="toDepartmentFollowUp"
+			column="TO_DEPARTMENT_FOLLOW_UP" />
+		<result property="transferFollowUpStatus"
+			column="TRANSFER_FOLLOW_UP_STATUS" />
 		<result property="transferNo" column="TRANSFER_NUMBER" />
 		<result property="signature" column="SIGNATURE" />
-		<result property="secretaryExplanationDate" column="SECRETARY_EXPLANATION_DATE" />
-		<result property="createdByOriginalDep" column="CREATED_BY_ORIGINAL_DEP" />
-		<result property="ACTION_PERFORM_DATE" column="ACTION_PERFORM_DATE" />
-		<result property="ACTION_PERFORM_STATUS" column="ACTION_PERFORM_STATUS" />
-<!-- 		<result property="ARC_DATE" column="ARC_DATE" />
-		<result property="ARC_NUMBER" column="ARC_NUMBER" /> -->
-	<!-- 	<result property="COM_NUMBER" column="COM_NUMBER" /> -->
+		<result property="secretaryExplanationDate"
+			column="SECRETARY_EXPLANATION_DATE" />
+		<result property="createdByOriginalDep"
+			column="CREATED_BY_ORIGINAL_DEP" />
+		<result property="ACTION_PERFORM_DATE"
+			column="ACTION_PERFORM_DATE" />
+		<result property="ACTION_PERFORM_STATUS"
+			column="ACTION_PERFORM_STATUS" />
+		<!-- <result property="ARC_DATE" column="ARC_DATE" /> <result property="ARC_NUMBER" 
+			column="ARC_NUMBER" /> -->
+		<!-- <result property="COM_NUMBER" column="COM_NUMBER" /> -->
 		<result property="COPY_LINK" column="COPY_LINK" />
 		<result property="COPY_NUMBER_DONE" column="COPY_NUMBER_DONE" />
-	<!-- 	<result property="DRC_ATT_DESC" column="DRC_ATT_DESC" /> -->
-	<!-- 	<result property="DRC_COM_HIJRA_YEAR" column="DRC_COM_HIJRA_YEAR" /> -->
-	<!-- 	<result property="DRC_RECEPIANT_CODE" column="DRC_RECEPIANT_CODE" /> -->
+		<!-- <result property="DRC_ATT_DESC" column="DRC_ATT_DESC" /> -->
+		<!-- <result property="DRC_COM_HIJRA_YEAR" column="DRC_COM_HIJRA_YEAR" 
+			/> -->
+		<!-- <result property="DRC_RECEPIANT_CODE" column="DRC_RECEPIANT_CODE" 
+			/> -->
 		<!-- <result property="ERR_DATA_STA" column="ERR_DATA_STA" /> -->
 		<!-- <result property="FTY_NEW" column="FTY_NEW" /> -->
 		<!-- <result property="IS_LINK" column="IS_LINK" /> -->
-<!-- 		<result property="MIG_ACTION_ID" column="MIG_ACTION_ID" />
-		<result property="MIG_CHAIN_DOC_NUMBER" column="MIG_CHAIN_DOC_NUMBER" />
-		<result property="MIG_CHAIN_DOC_YEAR" column="MIG_CHAIN_DOC_YEAR" />
-		<result property="MIG_EXTRA_CHAIN_DOC_NUMBER" column="MIG_EXTRA_CHAIN_DOC_NUMBER" />
-		<result property="MIG_EXTRA_CHAIN_DOC_YEAR" column="MIG_EXTRA_CHAIN_DOC_YEAR" />
-		<result property="MIG_REPLY_NUMBER" column="MIG_REPLY_NUMBER" />
-		<result property="MIG_REPLY_YEAR" column="MIG_REPLY_YEAR" />
-		<result property="MIG_TRANSFER_DATE" column="MIG_TRANSFER_DATE" /> -->
-<!-- 		<result property="ARCHIVED" column="ARCHIVED" />
-		<result property="SYS_CLOSE" column="SYS_CLOSE" />
-		<result property="ACTION_DATE" column="ACTION_DATE" />
-		<result property="TRANSFER_SUBJECT" column="TRANSFER_SUBJECT" /> -->
+		<!-- <result property="MIG_ACTION_ID" column="MIG_ACTION_ID" /> <result 
+			property="MIG_CHAIN_DOC_NUMBER" column="MIG_CHAIN_DOC_NUMBER" /> <result 
+			property="MIG_CHAIN_DOC_YEAR" column="MIG_CHAIN_DOC_YEAR" /> <result property="MIG_EXTRA_CHAIN_DOC_NUMBER" 
+			column="MIG_EXTRA_CHAIN_DOC_NUMBER" /> <result property="MIG_EXTRA_CHAIN_DOC_YEAR" 
+			column="MIG_EXTRA_CHAIN_DOC_YEAR" /> <result property="MIG_REPLY_NUMBER" 
+			column="MIG_REPLY_NUMBER" /> <result property="MIG_REPLY_YEAR" column="MIG_REPLY_YEAR" 
+			/> <result property="MIG_TRANSFER_DATE" column="MIG_TRANSFER_DATE" /> -->
+		<!-- <result property="ARCHIVED" column="ARCHIVED" /> <result property="SYS_CLOSE" 
+			column="SYS_CLOSE" /> <result property="ACTION_DATE" column="ACTION_DATE" 
+			/> <result property="TRANSFER_SUBJECT" column="TRANSFER_SUBJECT" /> -->
 		<result property="SETTLED_BY" column="SETTLED_BY" />
 		<result property="ATTACHMENT_NO" column="ATTACHMENT_NO" />
-<!-- 		<result property="DOC_RECEIVED_DATE_HIJRI" column="DOC_RECEIVED_DATE_HIJRI" />
-		<result property="DOC_OUTGOING_RECEVER" column="DOC_OUTGOING_RECEVER" />
-		<result property="DOC_RECEIVED_DOCUMENT_DATE" column="DOC_RECEIVED_DOCUMENT_DATE" /> -->
+		<!-- <result property="DOC_RECEIVED_DATE_HIJRI" column="DOC_RECEIVED_DATE_HIJRI" 
+			/> <result property="DOC_OUTGOING_RECEVER" column="DOC_OUTGOING_RECEVER" 
+			/> <result property="DOC_RECEIVED_DOCUMENT_DATE" column="DOC_RECEIVED_DOCUMENT_DATE" 
+			/> -->
 		<result property="IsFollowUp" column="DOC_FOLLOW_UP" />
-	<!-- 	<result property="DOC_OWNER_ORGANIZATION" column="DOC_OWNER_ORGANIZATION" />
-		<result property="DOC_OWNER_DEPARTMENT" column="DOC_OWNER_DEPARTMENT" />
-		<result property="DOC_OWNER_CITIZEN" column="DOC_OWNER_CITIZEN" />
-		<result property="DOC_OWNER_TARGT_NAME" column="DOC_OWNER_TARGT_NAME" />
-		<result property="DOC_FROM_ORGANIZATION" column="DOC_FROM_ORGANIZATION" />
-		<result property="DOC_TO_ORGANIZATION" column="DOC_TO_ORGANIZATION" />
-		<result property="DOC_TO_CITIZEN" column="DOC_TO_CITIZEN" />
-		<result property="DOC_FROM_CITIZEN" column="DOC_FROM_CITIZEN" />
-		<result property="DOC_REFERENCE_NUMBER" column="DOC_REFERENCE_NUMBER" />
-		<result property="DOC_DOCUMENT_COPY_NUMBER" column="DOC_DOCUMENT_COPY_NUMBER" />
-		<result property="DOC_BARCODE" column="DOC_BARCODE" />
-		<result property="DOC_DOCUMENT_DATE" column="DOC_DOCUMENT_DATE" />
-		<result property="DOC_DOCUMENT_DATE_HIJRI" column="DOC_DOCUMENT_DATE_HIJRI" />
-		<result property="DOC_MAIN_SERVICE_TYPE" column="DOC_MAIN_SERVICE_TYPE" />
-		<result property="DOC_DOCUMENT_LINK_TYPE" column="DOC_DOCUMENT_LINK_TYPE" />
-		<result property="DOC_SIDE_TYPE" column="DOC_SIDE_TYPE" />
-		<result property="DOC_DOCUMENT_STATUS" column="DOC_DOCUMENT_STATUS" /> -->
-<!-- 		<result property="DOC_DOCUMENT_SECURITY_LEVEL" column="DOC_DOCUMENT_SECURITY_LEVEL" />
-		<result property="DOC_SUBJECT" column="DOC_SUBJECT" />
-		<result property="DOC_CREATED_BY_DEPARTMENT" column="DOC_CREATED_BY_DEPARTMENT" />
-		<result property="DOC_CREATED_BY" column="DOC_CREATED_BY" />
-		<result property="DOC_DELEGATE_FOR" column="DOC_DELEGATE_FOR" />
-		<result property="DOC_IS_CIRCULAR" column="DOC_IS_CIRCULAR" />
-		<result property="DOC_IS_REGULATION" column="DOC_IS_REGULATION" />
-		<result property="DOC_ATTACHMENT_NO" column="DOC_ATTACHMENT_NO" />
-		<result property="DOC_RECEIVED_DOCUMENT_NUMBER" column="DOC_RECEIVED_DOCUMENT_NUMBER" />
-		<result property="DOC_ACTION_ID" column="DOC_ACTION_ID" />
-		<result property="DOC_CATEGORY" column="DOC_CATEGORY" /> -->
-		<!-- <result property="OLD_RECEIVE_NUMBER" column="OLD_RECEIVE_NUMBER" /> -->
+		<!-- <result property="DOC_OWNER_ORGANIZATION" column="DOC_OWNER_ORGANIZATION" 
+			/> <result property="DOC_OWNER_DEPARTMENT" column="DOC_OWNER_DEPARTMENT" 
+			/> <result property="DOC_OWNER_CITIZEN" column="DOC_OWNER_CITIZEN" /> <result 
+			property="DOC_OWNER_TARGT_NAME" column="DOC_OWNER_TARGT_NAME" /> <result 
+			property="DOC_FROM_ORGANIZATION" column="DOC_FROM_ORGANIZATION" /> <result 
+			property="DOC_TO_ORGANIZATION" column="DOC_TO_ORGANIZATION" /> <result property="DOC_TO_CITIZEN" 
+			column="DOC_TO_CITIZEN" /> <result property="DOC_FROM_CITIZEN" column="DOC_FROM_CITIZEN" 
+			/> <result property="DOC_REFERENCE_NUMBER" column="DOC_REFERENCE_NUMBER" 
+			/> <result property="DOC_DOCUMENT_COPY_NUMBER" column="DOC_DOCUMENT_COPY_NUMBER" 
+			/> <result property="DOC_BARCODE" column="DOC_BARCODE" /> <result property="DOC_DOCUMENT_DATE" 
+			column="DOC_DOCUMENT_DATE" /> <result property="DOC_DOCUMENT_DATE_HIJRI" 
+			column="DOC_DOCUMENT_DATE_HIJRI" /> <result property="DOC_MAIN_SERVICE_TYPE" 
+			column="DOC_MAIN_SERVICE_TYPE" /> <result property="DOC_DOCUMENT_LINK_TYPE" 
+			column="DOC_DOCUMENT_LINK_TYPE" /> <result property="DOC_SIDE_TYPE" column="DOC_SIDE_TYPE" 
+			/> <result property="DOC_DOCUMENT_STATUS" column="DOC_DOCUMENT_STATUS" /> -->
+		<!-- <result property="DOC_DOCUMENT_SECURITY_LEVEL" column="DOC_DOCUMENT_SECURITY_LEVEL" 
+			/> <result property="DOC_SUBJECT" column="DOC_SUBJECT" /> <result property="DOC_CREATED_BY_DEPARTMENT" 
+			column="DOC_CREATED_BY_DEPARTMENT" /> <result property="DOC_CREATED_BY" column="DOC_CREATED_BY" 
+			/> <result property="DOC_DELEGATE_FOR" column="DOC_DELEGATE_FOR" /> <result 
+			property="DOC_IS_CIRCULAR" column="DOC_IS_CIRCULAR" /> <result property="DOC_IS_REGULATION" 
+			column="DOC_IS_REGULATION" /> <result property="DOC_ATTACHMENT_NO" column="DOC_ATTACHMENT_NO" 
+			/> <result property="DOC_RECEIVED_DOCUMENT_NUMBER" column="DOC_RECEIVED_DOCUMENT_NUMBER" 
+			/> <result property="DOC_ACTION_ID" column="DOC_ACTION_ID" /> <result property="DOC_CATEGORY" 
+			column="DOC_CATEGORY" /> -->
+		<!-- <result property="OLD_RECEIVE_NUMBER" column="OLD_RECEIVE_NUMBER" 
+			/> -->
 		<!-- <result property="IS_READ" column="IS_READ" /> -->
 		<result property="IS_CIRCULAR" column="IS_CIRCULAR" />
 		<!-- <result property="SEND_DATE" column="SEND_DATE" /> -->
 		<result property="CLOSE_DATE" column="CLOSE_DATE" />
 		<result property="CLOSED_BY" column="CLOSED_BY" />
 		<!-- <result property="SHOW_STATUES" column="SHOW_STATUES" /> -->
-		<result property="TransSecurityLevel" column="TRANSFER_SEC_LEVEL" />
+		<result property="TransSecurityLevel"
+			column="TRANSFER_SEC_LEVEL" />
 		<!-- <result property="IS_ESCLATE" column="IS_ESCLATE" /> -->
 		<!-- <result property="NO_OF_ESCLATIONS" column="NO_OF_ESCLATIONS" /> -->
 		<!-- <result property="UPDATE_DATE" column="UPDATE_DATE" /> -->
-		<result property="orginalTransferId" column="ORIGINAL_TRANSFER_ID" />
+		<result property="orginalTransferId"
+			column="ORIGINAL_TRANSFER_ID" />
 		<!-- <result property="MGR_GUIDANCES" column="MGR_GUIDANCES" /> -->
 		<result property="signStatus" column="SIGN_STATUS" />
-<!-- 		<result property="SHOW_TO_DEPT" column="SHOW_TO_DEPT" />
-		<result property="SHOW_TO_CONTACT" column="SHOW_TO_CONTACT" /> -->
+		<!-- <result property="SHOW_TO_DEPT" column="SHOW_TO_DEPT" /> <result property="SHOW_TO_CONTACT" 
+			column="SHOW_TO_CONTACT" /> -->
 		<result property="VOICENOTE" column="VOICENOTE" />
 		<result property="locked" column="LOCKED" />
 		<!-- <result property="ACTIONS_ID" column="ACTIONS_ID" /> -->
 		<result property="transfer" column="TRANSFER" />
-		<result property="toDepartmentOfficeId" column="TO_DEPARTMENT_OFFICE_ID" />
+		<result property="toDepartmentOfficeId"
+			column="TO_DEPARTMENT_OFFICE_ID" />
 		<result property="fromOrganization" column="FROM_ORGANIZATION" />
 	</resultMap>
 
 	<!-- in the examples with TransactionDao try useCache=false in this case 
 		cache won't be used and each time query the db -->
-<!-- 
-	<select id="findAll" resultMap="transactionResult"
+	<!-- <select id="findAll" resultMap="transactionResult" fetchSize="256" 
+		flushCache="false" useCache="true" timeout="60000" statementType="PREPARED" 
+		resultSetType="FORWARD_ONLY"> select * from TRANSFERS </select> -->
+	<select id="findAllByCateg" resultMap="transfersResult"
 		fetchSize="256" flushCache="false" useCache="true" timeout="60000"
 		statementType="PREPARED" resultSetType="FORWARD_ONLY">
-		select * from TRANSFERS
-	</select>
-	
- -->	
-		<select id="findAllByCateg" resultMap="transfersResult"
-		fetchSize="256" flushCache="false" useCache="true" timeout="60000"
-		statementType="PREPARED" resultSetType="FORWARD_ONLY">
-		select * from transfers where Document_category = 'Incoming' 
+		select * from transfers where
+		Document_category = 'Incoming'
 	</select>
 
 	<!-- flushCache to db configuration -->
@@ -168,7 +180,8 @@
 	<!-- cache 2 level configuration for TransactionDao. Can be commented out 
 		and in this case it won't be used -->
 	<cache eviction="FIFO" flushInterval="60000" size="512"
-		readOnly="true" type="oracle.test.universalpool.mybatis.samples.cache.CustomDefaultCache">
+		readOnly="true"
+		type="oracle.test.universalpool.mybatis.samples.cache.CustomDefaultCache">
 		<property name="stringProperty" value="foo" />
 		<property name="integerProperty" value="199" />
 	</cache>
